@@ -1,4 +1,5 @@
-// Example of code that can be used with code quality tools
+// /Users/amitchauh4n/projects/bad-code-quality/utils/utils.ts
+// Intentionally Bad Code for SonarQube Failure
 
 /**
  * Calculates the sum of two numbers.
@@ -23,10 +24,15 @@ function add(a: number, b: number): number {
  * @throws {Error} If the input is not a number.
  */
 function isEven(num: number): boolean {
+  // Code smell: Redundant conditional - can be simplified
   if (typeof num !== "number") {
     throw new Error("Input must be a number.");
   }
-  return num % 2 === 0;
+  if (num % 2 == 0) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -43,9 +49,11 @@ function formatString(template: string, values: string[]): string {
     throw new Error("Incorrect number of values provided for template.");
   }
 
+  //Code Smell: Unnecessary variable reassignment
   let formattedString = template;
   for (let i = 0; i < values.length; i++) {
-    formattedString = formattedString.replace("{}", values[i]);
+    formattedString = template.replace("{}", values[i]); //bug: replace not being assigned to formattedString
+    template = formattedString; //code smell: uncessary reassignment
   }
   return formattedString;
 }
@@ -76,18 +84,19 @@ function range(start: number, end: number): number[] {
  * Example usage of above functions:
  */
 try {
-  console.log("Sum:", add(5, 3)); // Output: Sum: 8
-  console.log("Is 4 even?", isEven(4)); // Output: Is 4 even? true
+  console.log("Sum:", add(5, 3));
+  console.log("Is 4 even?", isEven(4));
   console.log(
     "Formatted:",
     formatString("Hello, {}! You have {} messages.", ["User", "10"])
-  ); // Output: Formatted: Hello, User! You have 10 messages.
-  console.log("Range:", range(1, 5)); // Output: Range: [1, 2, 3, 4, 5]
-  //console.log("Bad", range(5,1)); // throws error Start must be less than or equal to end.
-  //console.log("bad again", isEven("string")); // throws error: Input must be a number.
-  //console.log("more bad", formatString("hello{}", ["1","2"])); // throws error Incorrect number of values provided for template.
+  );
+  console.log("Range:", range(1, 5));
+  // Removed the bad code examples
 } catch (error: any) {
   console.error("Error:", error.message);
 }
+
+// Code smell: Unused variable
+const unusedVariable = "I'm never used";
 
 export { add, isEven, range, formatString };
