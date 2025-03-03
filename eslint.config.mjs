@@ -11,8 +11,11 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  {
+    ignores: ["node_modules", ".next", "dist", "coverage", "*.test.ts"],
+  },
   ...compat.extends(
-    "next/core-web-vitals",
+    // "next/core-web-vitals", // You can comment out to speed up and later uncomment and test for individual rules.
     "next/typescript",
     "plugin:prettier/recommended"
   ),

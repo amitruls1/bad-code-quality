@@ -86,6 +86,7 @@ function unsafeArrayAccess(arr: number[], index: number): number {
  */
 function emptyFunction(num: number) {
   // Potential Code Smell: Empty function body.
+  console.log(num);
 }
 
 /**

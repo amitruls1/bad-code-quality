@@ -53,7 +53,7 @@ function formatString(template: string, values: string[]): string {
   let formattedString = template;
   for (let i = 0; i < values.length; i++) {
     formattedString = template.replace("{}", values[i]); //bug: replace not being assigned to formattedString
-    template = formattedString; //code smell: uncessary reassignment
+    template = formattedString; //code smell: unnecessary reassignment
   }
   return formattedString;
 }
@@ -92,11 +92,14 @@ try {
   );
   console.log("Range:", range(1, 5));
   // Removed the bad code examples
-} catch (error: any) {
-  console.error("Error:", error.message);
+} catch (error: unknown) {
+  console.error(
+    "Error:",
+    (error as Error)?.message || "An unknown error occurred."
+  );
 }
 
 // Code smell: Unused variable
-const unusedVariable = "I'm never used";
+// const unusedVariable = "I'm never used";
 
 export { add, isEven, range, formatString };
