@@ -1,0 +1,22 @@
+/* This is a poorly formatted CSS file to demonstrate Prettier's capabilities */
+body {
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+}
+h1 {
+  font-size: 24px;
+  color: blue;
+  text-align: center;
+}
+p {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+}
